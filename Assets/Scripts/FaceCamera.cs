@@ -11,7 +11,10 @@ public class FaceCamera : MonoBehaviour {
 	}
 
 	void Update() {
-		float step = 1000 * Time.deltaTime;
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, target.transform.rotation, step);
+		transform.LookAt(target.transform);
+		Vector3 rotation = transform.rotation.eulerAngles;
+		rotation.x = 0;
+		rotation.z = 0;
+		transform.rotation = Quaternion.Euler(rotation);
 	}
 }
