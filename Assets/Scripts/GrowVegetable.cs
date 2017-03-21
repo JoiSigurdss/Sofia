@@ -6,22 +6,25 @@ public class GrowVegetable : MonoBehaviour {
 
 	public bool ShineWhenDone = true;
 	private bool grow = false;
+	private bool grown = false;
 
 	public float timeLeft = 30.0f;
 	public GameObject prefab;
-	public Texture[] textures;
+	public Texture textures;
+
 	Renderer rend;
 
 	void Start() {
-		rend = GetComponent<Renderer>();
+		rend = GetComponentInChildren <Renderer>();
 	}
 
 	void Update() {
-		if (grow == true) {
+		if (grow == true && grown == false) {
 
 			timeLeft -= Time.deltaTime;
 			if (timeLeft < 0) {
-				rend.material.mainTexture = textures [1];
+				rend.material.mainTexture = textures;
+				grown = true;
 				if (ShineWhenDone == true) {
 					Instantiate (prefab, transform.position + new Vector3(0,0.5f,0), transform.rotation);
 					ShineWhenDone = false;
@@ -31,12 +34,10 @@ public class GrowVegetable : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other) {
-		if (other.gameObject.tag == "Plot") {
+		if (other.gameObject.tag == "Plot" && grown == false ) {
 			transform.position = other.transform.position;
-			Debug.Log ("hallo!");
 			GetComponent<Rigidbody> ().isKinematic = true;
 			grow = true;
-
 		}
 	}
 }
