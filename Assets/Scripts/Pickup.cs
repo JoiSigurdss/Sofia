@@ -48,7 +48,7 @@ public class Pickup : MonoBehaviour {
 				GetComponent<Rigidbody> ().AddForce (inventory.transform.forward * throwForce);
 			}
 		} else {
-			transform.LookAt(player.transform);
+			//transform.LookAt(player.transform);
 			//Vector3 rotation = transform.rotation.eulerAngles;
 			//rotation.x = 0;
 			//rotation.z = 0;
