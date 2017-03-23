@@ -6,22 +6,25 @@ public class Pickable : MonoBehaviour {
 
 	GameObject player;
 	GameObject inventory;
-	public float throwForce = 200;
+	GameObject fpsCamera;
+	public float weight; // coin is 1, heavy rock is 10
 
 	void Start() {
 		player = GameObject.Find("Player");
+		fpsCamera = GameObject.Find("FPSCamera");
 		inventory = GameObject.Find("Inventory");
 	}
-	
+
 	public void pickup () {
 		GetComponent<Rigidbody>().isKinematic = true;
 		transform.position = inventory.transform.position;
 		transform.parent = inventory.transform;
 	}
 
-	public void drop() {
+	public void drop(float throwForce) {
 		GetComponent<Rigidbody> ().isKinematic = false;
 		transform.parent = null;
-		GetComponent<Rigidbody> ().AddForce (inventory.transform.forward * throwForce);
+		//Debug.Log (inventory.GetComponent<Rigidbody> ().velocity);
+		GetComponent<Rigidbody> ().AddForce (fpsCamera.transform.forward * throwForce);
 	}
 }
