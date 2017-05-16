@@ -1,0 +1,11 @@
+///////////////////////////////////////////////////////////
+// Component Preset Script
+///////////////////////////////////////////////////////////
+
+ComponentType vp_FPCamera
+RotationKneeling 0
+RotationStrafeRoll 0.35
+BobRate 0.0 0.0 0.0 0.0
+BobAmplitude 0 0 0 0
+BobMaxInputVelocity 0.0
+//RenderingFieldOfView 65

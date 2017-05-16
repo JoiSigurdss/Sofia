@@ -125,6 +125,15 @@ public class Interact : MonoBehaviour {
 							rend.material.mainTexture = texturefist;
 						}
 					}
+					// if it's Harvestable, I want to harvest it!
+					if (hit.transform.tag == "Harvestable") {
+						// ok, first I check if I'm already holding things AND if I just pressed the mouse button
+						if (holding == false && Input.GetMouseButtonDown (0)) {
+							hit.transform.gameObject.GetComponent<Crop> ().harvest ();
+							lastKnown = hit.transform.gameObject;
+							rend.material.mainTexture = texturefist;
+						}
+					}
 				}
 
 
